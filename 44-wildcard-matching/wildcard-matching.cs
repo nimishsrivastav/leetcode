@@ -40,3 +40,22 @@ public class Solution {
         return dp[m, n];
     }
 }
+
+/*
+ALGORITHMIC STEPS:
+1. Use dynamic programming with 2D array dp[i][j] representing if s[0...i-1] matches p[0...j-1]
+2. Initialize base cases:
+   - dp[0][0] = true (empty string matches empty pattern)
+   - dp[i][0] = false for i > 0 (non-empty string cannot match empty pattern)
+   - dp[0][j] = dp[0][j-1] if p[j-1] == '*' (empty string can match pattern with only '*')
+3. For each character in string and pattern:
+   - If pattern char is '?' or matches string char: dp[i][j] = dp[i-1][j-1]
+   - If pattern char is '*': dp[i][j] = dp[i-1][j] || dp[i][j-1] || dp[i-1][j-1]
+     - dp[i-1][j]: '*' matches current char in string
+     - dp[i][j-1]: '*' matches empty sequence
+     - dp[i-1][j-1]: '*' matches current char and we move both pointers
+4. Return dp[s.Length][p.Length]
+
+TIME COMPLEXITY: O(m * n) where m = length of string s, n = length of pattern p
+SPACE COMPLEXITY: O(m * n) for the 2D DP array
+*/
