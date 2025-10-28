@@ -18,16 +18,16 @@ public class Solution {
         var queue = new Queue<TreeNode>();
         queue.Enqueue(root);
 
-        bool foundNull = false;
+        bool foundNullNode = false;
 
         while (queue.Count > 0) {
             TreeNode current = queue.Dequeue();
 
             if (current == null) {
-                foundNull = true;
+                foundNullNode = true;
             }
             else {
-                if (foundNull) return false;
+                if (foundNullNode) return false;
 
                 queue.Enqueue(current.left);
                 queue.Enqueue(current.right);
