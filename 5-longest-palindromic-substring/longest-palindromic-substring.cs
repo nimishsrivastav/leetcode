@@ -1,9 +1,9 @@
 public class Solution {
     public string LongestPalindrome(string s) {
-        if (string.IsNullOrEmpty(s)) return "";
-        if (s.Length == 1) return s;
+        if (string.IsNullOrEmpty(s) || s.Length == 1) return s;
+        // if (s.Length == 1) return s;
 
-        int start = 0, maxLen = 1;
+        int start = 0, maxLen = 0;
 
         for (int i = 0; i < s.Length; i++) {
             int odd = ExpandAroundCenter(s, i, i);
